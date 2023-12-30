@@ -22,7 +22,7 @@ class AjaxAction extends Action
         $this->registerFrontendAjax(
             'post-submit',
             [
-                'methods' => 'POST',
+                'method' => 'POST',
                 'callback' => [PostSubmissionController::class, 'store'],
             ]
         );

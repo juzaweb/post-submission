@@ -13,33 +13,32 @@ class ConfigAction extends Action
 
     public function addAdminConfigs(): void
     {
-        $this->registerPostType(
-            'post-submissions',
-            [
-                'label' => trans('Post Submission'),
-                'description' => trans('Post Submit by users'),
-                'menu_icon' => 'fa fa-plus',
-                'menu_position' => 99,
-            ]
-        );
-
-        $this->hookAction->registerSettingPage(
-            'post-submission',
-            [
-                'label' => trans('Settings'),
-                'menu' => [
-                    'parent' => 'post-type.post-submissions',
-                    'position' => 99,
-                    'icon' => 'fa fa-cog'
-                ]
-            ]
-        );
+        // $this->addAdminMenu(
+        //     trans('Post Submission'),
+        //     'post-submissions',
+        //     [
+        //         'icon' => 'fa fa-plus',
+        //         'position' => 99,
+        //     ]
+        // );
+        //
+        // $this->hookAction->registerSettingPage(
+        //     'post-submission',
+        //     [
+        //         'label' => trans('Settings'),
+        //         'menu' => [
+        //             'parent' => 'post-submissions',
+        //             'position' => 99,
+        //             'icon' => 'fa fa-cog'
+        //         ]
+        //     ]
+        // );
 
         $this->hookAction->addSettingForm(
             'post-submission',
             [
-                'name' => trans('Settings'),
-                'page' => 'post-submission'
+                'name' => trans('Post Submission'),
+                //'page' => 'post-submissions'
             ]
         );
 
@@ -58,6 +57,7 @@ class ConfigAction extends Action
                             'required',
                             'in:0,1'
                         ],
+                        'description' => trans('Url for post submit: :url', ['url' => url('ajax/post-submit')]),
                     ]
                 ],
             ]
