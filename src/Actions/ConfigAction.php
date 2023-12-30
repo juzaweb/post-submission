@@ -1,6 +1,6 @@
 <?php
 
-namespace Juzaweb\Postsubmission\Actions;
+namespace Juzaweb\PostSubmission\Actions;
 
 use Juzaweb\CMS\Abstracts\Action;
 
@@ -13,29 +13,24 @@ class ConfigAction extends Action
 
     public function addAdminConfigs(): void
     {
-        $this->addAdminMenu(
-            trans('Post submission'),
-            'post-submission',
-            [
-                'icon' => 'fa fa-plus',
-                'position' => 99,
-            ]
-        );
-
         $this->registerPostType(
-            'post-submission',
+            'post-submissions',
             [
-
+                'label' => trans('Post Submission'),
+                'description' => trans('Post Submit by users'),
+                'menu_icon' => 'fa fa-plus',
+                'menu_position' => 99,
             ]
         );
 
         $this->hookAction->registerSettingPage(
             'post-submission',
             [
-                'label' => trans('Post Submission'),
+                'label' => trans('Settings'),
                 'menu' => [
-                    'parent' => 'post-submission',
+                    'parent' => 'post-type.post-submissions',
                     'position' => 99,
+                    'icon' => 'fa fa-cog'
                 ]
             ]
         );
@@ -43,7 +38,7 @@ class ConfigAction extends Action
         $this->hookAction->addSettingForm(
             'post-submission',
             [
-                'name' => 'Crawler Settings',
+                'name' => trans('Settings'),
                 'page' => 'post-submission'
             ]
         );
@@ -52,12 +47,16 @@ class ConfigAction extends Action
             [
                 'post_submit_enable' => [
                     'type' => 'select',
-                    'label' => 'Enable Post Submit',
+                    'label' => trans('Enable Post Submit'),
                     'form' => 'post-submission',
                     'data' => [
                         'options' => [
                             0 => trans('cms::app.disabled'),
                             1 => trans('cms::app.enable')
+                        ],
+                        'validators' => [
+                            'required',
+                            'in:0,1'
                         ],
                     ]
                 ],
