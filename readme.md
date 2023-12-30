@@ -1,0 +1,1 @@
+# User can submit posts to your website

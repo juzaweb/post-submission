@@ -1,5 +1,5 @@
 {
-    "name": "juzaweb/post-submition",
+    "name": "juzaweb/post-submission",
     "type": "juzaweb-plugin",
     "license": "MIT",
     "description": "Plugin support user can submit post to your website",
@@ -12,16 +12,21 @@
     ],
     "extra": {
         "juzaweb": {
-            "name": "juzaweb/post-submit",
+            "name": "Post Submition",
             "domain": "post_submit",
             "providers": [
-                "Juzaweb\\PostSubmit\\Providers\\PostSubmitServiceProvider"
+                "Juzaweb\\PostSubmission\\Providers\\PostSubmitServiceProvider"
             ]
         }
     },
     "autoload": {
         "psr-4": {
-            "Juzaweb\\PostSubmit\\": "src/"
+            "Juzaweb\\PostSubmission\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Juzaweb\\PostSubmission\\Tests\\": "tests/"
         }
     },
     "require-dev": {

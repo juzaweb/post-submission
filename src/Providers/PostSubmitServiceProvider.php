@@ -1,14 +1,15 @@
 <?php
 
-namespace Juzaweb\PostSubmit\Providers;
+namespace Juzaweb\PostSubmission\Providers;
 
 use Juzaweb\CMS\Support\ServiceProvider;
+use Juzaweb\PostSubmission\Actions\ConfigAction;
 
 class PostSubmitServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        //
+        $this->registerHookActions([ConfigAction::class]);
     }
 
     /**
@@ -16,18 +17,8 @@ class PostSubmitServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         //
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 }
