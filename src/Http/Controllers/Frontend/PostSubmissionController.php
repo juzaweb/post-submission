@@ -26,7 +26,7 @@ class PostSubmissionController extends FrontendController
     public function store(StorePostRequest $request): JsonResponse|RedirectResponse
     {
         DB::transaction(function () use ($request) {
-            $post = $this->postRepository->create($request->safe()->all());
+            $post = $this->postRepository->create($request->safe()->merge(['status' => 'pending'])->all());
 
             $post->syncTaxonomies($request->safe()->all());
         });
